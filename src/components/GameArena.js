@@ -5,47 +5,41 @@ import { MDBDataTable, MDBContainer } from 'mdbreact';
 const currentData = {
   columns: [
     {
-      label: 'Account No',
-      field: 'Account No',
+      label: 'Title',
+      field: 'title',
       sort: 'asc',
       width: 150
     },
     {
-      label: 'Date',
-      field: 'Date',
+      label: 'Platform',
+      field: 'platform',
       sort: 'asc',
       width: 270
     },
     {
-      label: 'Transaction Details',
-      field: 'Transaction Details',
+      label: 'Score',
+      field: 'score',
       sort: 'asc',
       width: 200
     },
     {
-      label: 'Value Date',
-      field: 'Value Date',
+      label: 'Genre',
+      field: 'genre',
       sort: 'asc',
       width: 100
     },
     {
-      label: 'Withdrawal AMT',
-      field: 'Withdrawal AMT',
+      label: 'Editors Choice',
+      field: 'editors_choice',
       sort: 'asc',
       width: 150
     },
     {
-      label: 'Deposit AMT',
-      field: 'Deposit AMT',
+      label: 'Release Year',
+      field: 'release_year',
       sort: 'asc',
       width: 100
     },
-    {
-      label: 'Balance AMT',
-      field: 'Balance AMT',
-      sort: 'asc',
-      width: 100
-    }
   ],
   rows: [],
 };
@@ -63,7 +57,7 @@ const Spinner = () => {
   );
 }
 
-class AccountDetails extends React.Component {
+class GameArena extends React.Component {
 
   constructor() {
     super();
@@ -77,9 +71,10 @@ class AccountDetails extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://starlord.hackerearth.com/bankAccount')
+    axios.get('http://starlord.hackerearth.com/gamesext')
     .then(res => {
       currentData.rows = res.data;
+      console.log(res.data);
       this.setState({ data: currentData, loading: false });
     }).catch(err => {
       console.log(err);
@@ -90,7 +85,7 @@ class AccountDetails extends React.Component {
     return(
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a className="navbar-brand" href="/">Account Details</a>
+          <a className="navbar-brand" href="/">Sapient Games Arena</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -101,13 +96,14 @@ class AccountDetails extends React.Component {
                 <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="https://prafulnikam.herokuapp.com" target='_blank'>Portfolio</a>
+                <a className="nav-link" rel="noopener noreferrer" href="https://prafulnikam.herokuapp.com" target='_blank'>Portfolio</a>
               </li>
             </ul>
           </div>
         </nav>
         <MDBContainer style={{
           marginTop: '3%',
+          marginBottom: '5%',
         }}>
           { 
             this.state.loading ?
@@ -122,9 +118,9 @@ class AccountDetails extends React.Component {
           }
           
         </MDBContainer>
-        <footer class="page-footer bottom font-small bg-dark fixed-bottom">
-          <div class="footer-copyright text-center py-3">© 2020 Copyright : 
-            <a href="https://prafulnikam.herokuapp.com" target='_blank'> Praful Nikam</a>
+        <footer className="page-footer bottom font-small bg-dark fixed-bottom">
+          <div className="footer-copyright text-center py-3">© 2020 Copyright : 
+            <a rel="noopener noreferrer" href="https://prafulnikam.herokuapp.com" target='_blank'> Praful Nikam</a>
           </div>
         </footer>
       </div>
@@ -132,4 +128,4 @@ class AccountDetails extends React.Component {
   }
 }
 
-export default AccountDetails;
+export default GameArena;
